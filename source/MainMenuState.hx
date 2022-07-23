@@ -35,8 +35,6 @@ class MainMenuState extends MusicBeatState
 	var optionShit:Array<String> = [
 		'story_mode',
 		'freeplay',
-		#if MODS_ALLOWED 'mods', #end
-		#if ACHIEVEMENTS_ALLOWED 'awards', #end
 		'credits',
 		#if !switch 'donate', #end
 		'options'
@@ -46,7 +44,9 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
-
+	
+	var char:FlxSprite;
+	
 	override function create()
 	{
 		#if desktop
@@ -105,7 +105,7 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
+			var menuItem:FlxSprite = new FlxSprite(100, (i * 140)  + offset);
 			menuItem.scale.x = scale;
 			menuItem.scale.y = scale;
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
@@ -113,7 +113,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
-			menuItem.screenCenter(X);
+			//menuItem.screenCenter(X);
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
@@ -156,6 +156,73 @@ class MainMenuState extends MusicBeatState
 		#end
 
 		super.create();
+		
+		switch (FlxG.random.int(1;7)
+		}
+			case 1:
+			char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/brnito'));//put your cords and image here
+			char.frames = Paths.getSparrowAtlas('mainmenu/brnito');//here put the name of the xml
+			char.animation.addByPrefix('idleB', 'BRN IDLE', 24, true);//on 'idle normal' change it to your xml one
+			char.animation.play('idleG');//you can rename the anim however you want to
+			char.scrollFactor.set();
+			char.antialiasing = ClientPrefs.globalAntialiasing;
+			add(char);
+
+			case 2:
+			char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/GF_ass_sets_3'));//put your cords and image here
+			char.frames = Paths.getSparrowAtlas('mainmenu/GF_ass_sets_3');//here put the name of the xml
+			char.animation.addByPrefix('idleG', 'GF Dancing Beat', 24, true);//on 'idle normal' change it to your xml one
+			char.animation.play('idleG');//you can rename the anim however you want to
+			char.scrollFactor.set();
+			char.antialiasing = ClientPrefs.globalAntialiasing;
+			add(char);
+
+			case 3:
+			char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/minus_rayna'));//put your cords and image here
+			char.frames = Paths.getSparrowAtlas('mainmenu/minus_rayna');//here put the name of the xml
+			char.animation.addByPrefix('idleM', 'GF Dancing Beat', 24, true);//on 'idle normal' change it to your xml one
+			char.animation.play('idleM');//you can rename the anim however you want to
+			char.scrollFactor.set();
+			char.antialiasing = ClientPrefs.globalAntialiasing;
+			add(char);
+				
+			case 4:
+			char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/rayna'));//put your cords and image here
+			char.frames = Paths.getSparrowAtlas('mainmenu/rayna');//here put the name of the xml
+			char.animation.addByPrefix('idleA', 'rayna idle', 24, true);//on 'idle normal' change it to your xml one
+			char.animation.play('idleA');//you can rename the anim however you want to
+			char.scrollFactor.set();
+			char.antialiasing = ClientPrefs.globalAntialiasing;
+			add(char);
+			
+			case 5:
+			char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/rayna_assets'));//put your cords and image here
+			char.frames = Paths.getSparrowAtlas('mainmenu/rayna_assets');//here put the name of the xml
+			char.animation.addByPrefix('idleY', 'rayna', 24, true);//on 'idle normal' change it to your xml one
+			char.animation.play('idleY');//you can rename the anim however you want to
+			char.scrollFactor.set();
+			char.antialiasing = ClientPrefs.globalAntialiasing;
+			add(char);
+				
+			case 6:
+			char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/RAYNABF'));//put your cords and image here
+			char.frames = Paths.getSparrowAtlas('mainmenu/RAYNABF');//here put the name of the xml
+			char.animation.addByPrefix('idleF', 'BF idle dance', 24, true);//on 'idle normal' change it to your xml one
+			char.animation.play('idleF');//you can rename the anim however you want to
+			char.scrollFactor.set();
+			char.antialiasing = ClientPrefs.globalAntialiasing;
+			add(char);
+				
+			case 7:
+			char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/valen'));//put your cords and image here
+			char.frames = Paths.getSparrowAtlas('mainmenu/valen');//here put the name of the xml
+			char.animation.addByPrefix('idleV', 'VALEN IDLE', 24, true);//on 'idle normal' change it to your xml one
+			char.animation.play('idleV');//you can rename the anim however you want to
+			char.scrollFactor.set();
+			char.antialiasing = ClientPrefs.globalAntialiasing;
+			add(char);
+		}
+
 	}
 
 	#if ACHIEVEMENTS_ALLOWED
@@ -264,7 +331,7 @@ class MainMenuState extends MusicBeatState
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
-			spr.screenCenter(X);
+			//spr.screenCenter(X);
 		});
 	}
 
